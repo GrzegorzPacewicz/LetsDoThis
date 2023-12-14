@@ -1,4 +1,5 @@
 import { Form } from "./components/Form.jsx";
+import { Task } from "./components/Task.jsx";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
             </header>
 
             <Form />
+            <Task />
 
         </div>
     )
