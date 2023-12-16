@@ -1,7 +1,20 @@
 import { Form } from "./components/Form.jsx";
 import { Task } from "./components/Task.jsx";
+import { useState } from "react";
 
 function App() {
+
+    const [tasks, setTasks] = useState([])
+
+    const handleTaskSubmit = (task) =>  {
+        setTasks((prevTasks) => {
+            return [
+                ...prevTasks,  { task, id: prevTasks.length + 1 },
+
+            ]
+        });
+    }
+
     return (
         <div className="bg-white py-8 px-6 rounded-3xl max-w-3xl mt-8 mx-2 w-full">
 
@@ -16,7 +29,7 @@ function App() {
 
             </header>
 
-            <Form />
+            <Form onTaskSubmit={handleTaskSubmit} />
             <Task />
 
         </div>

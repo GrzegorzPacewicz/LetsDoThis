@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "./Button.jsx";
 
-export function Form() {
+export function Form( {onTaskSubmit}) {
+
+    const [inputValue, setInputValue] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const task = inputValue;
+
+        onTaskSubmit(task);
+
+        setInputValue("");
+    }
+
     return (
-        <form className="flex gap-3 mt-6" >
-            <input type="text" className="w-full border-[1px] border-blue-400 rounded p-2 border-solid"/>
-            <Button textButton={"Dodaj"} />
+        <form className="flex gap-3 mt-6" onSubmit={handleSubmit}>
+            <input type="text"
+                   className="w-full border-[1px] border-blue-400 rounded p-2 border-solid"
+                    name="task"
+                   id="task"
+                   value={inputValue}
+                   onChange={(event) => {
+                       setInputValue(event.target.value)
+                   }}
+            />
+            <Button textButton={"Dodaj"}
+                    type="submit"
+                    disabled={inputValue === ""}
+            />
         </form>
     );
 }
