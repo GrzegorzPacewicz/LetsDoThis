@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Button } from "./Button.jsx";
 
-export function Form( {onTaskSubmit}) {
+export function Form({ onTaskSubmit }) {
 
     const [inputValue, setInputValue] = useState("");
 
     function handleSubmit(event) {
         event.preventDefault();
 
-        const task = inputValue;
+        const trimmedTask = inputValue.trim()
 
-        onTaskSubmit(task);
+        if (!trimmedTask) {
+            return;
+        }
+
+        onTaskSubmit(trimmedTask);
 
         setInputValue("");
     }
@@ -19,7 +23,7 @@ export function Form( {onTaskSubmit}) {
         <form className="flex gap-3 mt-6" onSubmit={handleSubmit}>
             <input type="text"
                    className="w-full border-[1px] border-blue-400 rounded p-2 border-solid"
-                    name="task"
+                   name="task"
                    id="task"
                    value={inputValue}
                    onChange={(event) => {
@@ -28,7 +32,6 @@ export function Form( {onTaskSubmit}) {
             />
             <Button textButton={"Dodaj"}
                     type="submit"
-                    disabled={inputValue === ""}
             />
         </form>
     );
