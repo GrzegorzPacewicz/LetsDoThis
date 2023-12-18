@@ -5,16 +5,19 @@ import { Tasks } from "./components/Tasks.jsx";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [isFormShown, setIsFormShown] = useState(false);
+  const [isButtonShown, setIsButtonShown] = useState(true);
 
   const handleTaskSubmit = (task) => {
     setTasks((prevTasks) => {
       return [...prevTasks, { task, id: prevTasks.length + 1 }];
     });
     setIsFormShown(false);
+    setIsButtonShown(true);
   };
 
   function handleShowForm() {
     setIsFormShown(true);
+    setIsButtonShown(false);
   }
 
   return (
@@ -25,12 +28,16 @@ function App() {
           <h2 className="font-bold text-3xl py-2">5 zadań</h2>
         </div>
 
-        <button
-          className="bg-blue-400 border-0 rounded-full w-12 h-12 text-3xl text-white cursor-pointer"
-          onClick={handleShowForm}
-        >
-          +
-        </button>
+        <div className="w-32 flex justify-end">
+          {isButtonShown && (
+            <button
+              className="bg-blue-400 border-0 rounded-full w-12 h-12 text-3xl text-white cursor-pointer"
+              onClick={handleShowForm}
+            >
+              +
+            </button>
+          )}
+        </div>
       </header>
 
       <div className="h-14 mt-8">
