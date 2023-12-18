@@ -33,7 +33,9 @@ function App() {
         </button>
       </header>
 
-      {isFormShown && <Form onTaskSubmit={handleTaskSubmit} />}
+      <div className="h-14 mt-8">
+        {isFormShown && <Form onTaskSubmit={handleTaskSubmit} />}
+      </div>
 
       <Tasks tasks={tasks} />
     </div>
