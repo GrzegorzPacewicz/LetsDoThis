@@ -31,7 +31,7 @@ function App() {
         <div className="w-32 flex justify-end">
           {isButtonShown && (
             <button
-              className="bg-blue-400 border-0 rounded-full w-12 h-12 text-3xl text-white cursor-pointer"
+              className="bg-blue-400 border-0 rounded-full w-12 h-12 text-3xl text-white cursor-pointer transition-opacity duration-300"
               onClick={handleShowForm}
             >
               +
