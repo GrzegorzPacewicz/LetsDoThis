@@ -9,7 +9,7 @@ function App() {
 
   const handleTaskSubmit = (task) => {
     setTasks((prevTasks) => {
-      return [...prevTasks, { task, id: prevTasks.length + 1 }];
+      return [...prevTasks, { id: prevTasks.length + 1, task, done: false }];
     });
     setIsFormShown(false);
     setIsButtonShown(true);
@@ -44,7 +44,7 @@ function App() {
         {isFormShown && <Form onTaskSubmit={handleTaskSubmit} />}
       </div>
 
-      <Tasks tasks={tasks} />
+      <Tasks tasks={tasks} setTasks={setTasks} />
     </div>
   );
 }

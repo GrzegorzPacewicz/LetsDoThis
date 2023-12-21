@@ -1,8 +1,28 @@
 import React from "react";
 import { Task } from "./Task.jsx";
 
-export function Tasks({ tasks }) {
-  const tasksElement = tasks.map((r) => <Task key={r.id} task={r.task} />);
+export function Tasks({ tasks, setTasks }) {
+  
+  const handleToggleDone = (taskId) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, done: !task.done } : task
+      )
+    );
+  };
 
-  return <div>{tasksElement}</div>;
+  const handleDeleteTask = (taskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
+  const tasksElements = tasks.map((task) => (
+    <Task
+      key={task.id}
+      task={task}
+      onToggleDone={handleToggleDone}
+      onDelete={handleDeleteTask}
+    />
+  ));
+
+  return <div>{tasksElements}</div>;
 }
