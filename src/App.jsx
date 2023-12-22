@@ -27,7 +27,7 @@ function App() {
           <h1 className="font-bold text-4xl">Do zrobienia</h1>
           <h2 className="font-bold text-3xl py-2">
             {tasks.length === 0
-              ? "Wszystkie zrobione! 😎"
+              ? "I po robocie! 😎"
               : tasks.length === 1
               ? "Zostało 1 zadanie"
               : tasks.length >= 2 && tasks.length <= 4
