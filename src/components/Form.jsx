@@ -3,11 +3,6 @@ import { Button } from "./Button.jsx";
 
 export function Form({ onTaskSubmit }) {
   const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -30,7 +25,7 @@ export function Form({ onTaskSubmit }) {
         className="w-full border-[1px] border-blue-400 rounded p-2 border-solid"
         name="task"
         id="task"
-        ref={inputRef}
+        autoFocus
         value={inputValue}
         onChange={(event) => {
           setInputValue(event.target.value);
