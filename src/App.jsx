@@ -25,7 +25,15 @@ function App() {
       <header className="flex items-center justify-between gap-40 ">
         <div className="">
           <h1 className="font-bold text-4xl">Do zrobienia</h1>
-          <h2 className="font-bold text-3xl py-2">5 zadań</h2>
+          <h2 className="font-bold text-3xl py-2">
+            {tasks.length === 0
+              ? "Wszystkie zrobione! 😎"
+              : tasks.length === 1
+              ? "Zostało 1 zadanie"
+              : tasks.length >= 2 && tasks.length <= 4
+              ? `Zostały ${tasks.length} zadania`
+              : `Zostało aż ${tasks.length} zadań`}
+          </h2>
         </div>
 
         <div className="w-32 flex justify-end">
