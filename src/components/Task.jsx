@@ -3,7 +3,7 @@ import { Button } from "./Button.jsx";
 
 export function Task({ task, onToggleDone, onDelete }) {
     return (
-        <div className="flex justify-between gap-4 mt-6 items-center">
+        <div className="flex justify-between gap-4 mt-6 items-center border-t-[1px] pt-4 border-black">
             <div className={`font-medium text-l ${task.done ? "line-through" : ""}`}>
                 {task.task}
             </div>
