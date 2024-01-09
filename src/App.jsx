@@ -21,7 +21,7 @@ function App() {
     }
 
     return (
-        <div className="bg-white py-8 px-6 rounded-3xl max-w-3xl mt-8 mx-2 w-full">
+        <div className="bg-white py-8 px-6 rounded-3xl w-[600px]  mt-8 mx-2 w-full">
             <header className="flex items-center justify-between gap-40 ">
                 <div className="">
                     <h1 className="font-bold text-4xl">Do zrobienia</h1>

@@ -18,13 +18,13 @@ export function Task({ task, onToggleDone, onDelete }) {
                     />
                 )}
 
-                <button
-                    className="border-[1px] rounded border-orange-500 w-max px-3 py-1 text-orange-500 font-medium hover:text-white hover:bg-orange-500 transition-all duration-300 "
+                <Button
+                    textButton={"Usuń zadanie"}
                     onClick={() => {
                         onDelete(task.id);
                     }}
-                >Usuń zadanie
-                </button>
+                />
+
             </div>
         </div>
     );
