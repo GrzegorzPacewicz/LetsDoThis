@@ -1,6 +1,7 @@
 import { Form } from "./components/Form.jsx";
 import { useState } from "react";
 import { Tasks } from "./components/Tasks.jsx";
+import { getTasksNumber } from "./utils/getTasksNumber.js";
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -26,13 +27,7 @@ function App() {
                 <div className="">
                     <h1 className="font-bold text-4xl">Do zrobienia</h1>
                     <h2 className="font-bold text-3xl py-2">
-                        {tasks.length === 0
-                            ? "I po robocie! 😎"
-                            : tasks.length === 1
-                                ? "Zostało 1 zadanie"
-                                : tasks.length >= 2 && tasks.length <= 4
-                                    ? `Zostały ${tasks.length} zadania`
-                                    : `Zostało aż ${tasks.length} zadań`}
+                        {getTasksNumber(tasks)}
                     </h2>
                 </div>
 
