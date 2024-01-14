@@ -1,7 +1,7 @@
 import { Form } from "./components/Form.jsx";
-import { useState } from "react";
-import { Tasks } from "./components/Tasks.jsx";
+import React, { useState } from "react";
 import { getTasksNumber } from "./utils/getTasksNumber.js";
+import { Task } from "./components/Task.jsx";
 
 function App() {
     const [tasks, setTasks] = useState([]);
@@ -17,6 +17,27 @@ function App() {
     function handleShowForm() {
         setIsFormShown(true);
     }
+
+    const handleToggleDone = (taskId) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === taskId ? { ...task, done: !task.done } : task
+            )
+        );
+    };
+
+    const handleDeleteTask = (taskId) => {
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    };
+
+    const tasksElements = tasks.map((task) => (
+        <Task
+            key={task.id}
+            task={task}
+            onToggleDone={handleToggleDone}
+            onDelete={handleDeleteTask}
+        />
+    ));
 
     return (
         <div className="bg-white py-8 px-6 rounded-3xl w-[600px]  mt-8 mx-2">
@@ -44,7 +65,8 @@ function App() {
                 {isFormShown && <Form onTaskSubmit={handleTaskSubmit}/>}
             </div>
 
-            <Tasks tasks={tasks} setTasks={setTasks}/>
+            <div>{tasksElements}</div>
+
         </div>
     );
 }
