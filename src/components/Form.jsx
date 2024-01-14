@@ -31,7 +31,11 @@ export function Form({ onTaskSubmit }) {
                     setInputValue(event.target.value);
                 }}
             />
-            <Button textButton={"Dodaj"} type="submit"/>
+            <Button
+                textButton={"Dodaj"}
+                type="submit"
+                disabled={!inputValue.trim()}
+            />
         </form>
     );
 }
