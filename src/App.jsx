@@ -10,13 +10,11 @@ function App() {
 
     const handleTaskSubmit = (task) => {
         setTasks((prevTasks) => {
-            const lastId = prevTasks.length > 0 ? prevTasks[prevTasks.length - 1].id : 0;
-            return [...prevTasks, { id: lastId + 1, task, done: false }];
+            return [...prevTasks, { id: Math.random(), task, done: false }];
         });
         setIsFormShown(false);
         setIsButtonShown(true);
     };
-
 
     function handleShowForm() {
         setIsFormShown(true);
