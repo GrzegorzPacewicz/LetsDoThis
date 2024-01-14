@@ -6,19 +6,16 @@ import { getTasksNumber } from "./utils/getTasksNumber.js";
 function App() {
     const [tasks, setTasks] = useState([]);
     const [isFormShown, setIsFormShown] = useState(false);
-    const [isButtonShown, setIsButtonShown] = useState(true);
 
     const handleTaskSubmit = (task) => {
         setTasks((prevTasks) => {
             return [...prevTasks, { id: Math.random(), task, done: false }];
         });
         setIsFormShown(false);
-        setIsButtonShown(true);
-    };
+           };
 
     function handleShowForm() {
         setIsFormShown(true);
-        setIsButtonShown(false);
     }
 
     return (
@@ -32,7 +29,7 @@ function App() {
                 </div>
 
                 <div className="w-32 flex justify-end">
-                    {isButtonShown && (
+                    {!isFormShown && (
                         <button
                             className="bg-blue-400 border-0 rounded-full w-12 h-12 text-3xl text-white cursor-pointer transition-all duration-300 hover:bg-blue-700"
                             onClick={handleShowForm}
