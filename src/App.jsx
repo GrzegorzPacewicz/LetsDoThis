@@ -4,7 +4,10 @@ import { getTasksNumber } from "./utils/getTasksNumber.js";
 import { Task } from "./components/Task.jsx";
 
 function App() {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState([
+        { task: "Zapłacić rachunki", done: false, id: 1 },
+        { task: "Wyrzucić śmieci", done: true, id: 2 },
+    ]);
     const [isFormShown, setIsFormShown] = useState(false);
 
     const handleTaskSubmit = (task) => {
