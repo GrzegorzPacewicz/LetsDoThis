@@ -12,6 +12,9 @@ function tasksReducer(state, action) {
       task.id === action.id ? { ...task, done: !task.done } : task
     );
   }
+  if (action.type === "add") {
+    return [...state, { id: Math.random(), task: action.newTask, done: false }];
+  }
 }
 
 function App() {
@@ -22,10 +25,8 @@ function App() {
     { task: "Wyrzucić śmieci", done: true, id: 2 },
   ]);
 
-  const handleTaskSubmit = (task) => {
-    setTasks((prevTasks) => {
-      return [...prevTasks, { id: Math.random(), task, done: false }];
-    });
+  const handleTaskSubmit = (newTask) => {
+    dispatch({ type: "add", newTask });
     setIsFormShown(false);
   };
 
