@@ -3,7 +3,7 @@ import React, { useReducer, useState } from "react";
 import { getTasksNumber } from "./utils/getTasksNumber.js";
 import { Task } from "./components/Task.jsx";
 
-function tasksReducer(state, action) {
+function appReducer(state, action) {
   if (action.type === "delete") {
     return state.filter((task) => task.id !== action.id);
   }
@@ -18,12 +18,13 @@ function tasksReducer(state, action) {
 }
 
 function App() {
-  const [isFormShown, setIsFormShown] = useState(false);
-
-  const [tasks, dispatch] = useReducer(tasksReducer, [
-    { task: "Zapłacić rachunki", done: false, id: 1 },
-    { task: "Wyrzucić śmieci", done: true, id: 2 },
-  ]);
+  const [{ tasks, isFormShown }, dispatch] = useReducer(appReducer, {
+    tasks: [
+      { task: "Zapłacić rachunki", done: false, id: 1 },
+      { task: "Wyrzucić śmieci", done: true, id: 2 },
+    ],
+    isFormShown: false,
+  });
 
   const handleTaskSubmit = (newTask) => {
     dispatch({ type: "add", newTask });
