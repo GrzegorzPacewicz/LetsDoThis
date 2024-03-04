@@ -2,20 +2,7 @@ import { Form } from "./components/Form.jsx";
 import React, { useReducer, useState } from "react";
 import { getTasksNumber } from "./utils/getTasksNumber.js";
 import { Task } from "./components/Task.jsx";
-
-function appReducer(state, action) {
-  if (action.type === "delete") {
-    return state.filter((task) => task.id !== action.id);
-  }
-  if (action.type === "finish") {
-    return state.map((task) =>
-      task.id === action.id ? { ...task, done: !task.done } : task
-    );
-  }
-  if (action.type === "add") {
-    return [...state, { id: Math.random(), task: action.newTask, done: false }];
-  }
-}
+import { appReducer } from "./reducer/appReducer.js";
 
 function App() {
   const [{ tasks, isFormShown }, dispatch] = useReducer(appReducer, {
@@ -28,11 +15,10 @@ function App() {
 
   const handleTaskSubmit = (newTask) => {
     dispatch({ type: "add", newTask });
-    setIsFormShown(false);
   };
 
   function handleShowForm() {
-    setIsFormShown(true);
+    dispatch({ type: "open_form" });
   }
 
   const handleToggleDone = (id) => {
