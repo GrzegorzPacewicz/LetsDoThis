@@ -13,31 +13,6 @@ function App() {
     isFormShown: false,
   });
 
-  const handleTaskSubmit = (newTask) => {
-    dispatch({ type: "add", newTask });
-  };
-
-  function handleShowForm() {
-    dispatch({ type: "open_form" });
-  }
-
-  const handleToggleDone = (id) => {
-    dispatch({ type: "finish", id });
-  };
-
-  const handleDeleteTask = (id) => {
-    dispatch({ type: "delete", id });
-  };
-
-  const tasksElements = tasks.map((task) => (
-    <Task
-      key={task.id}
-      task={task}
-      onToggleDone={handleToggleDone}
-      onDelete={handleDeleteTask}
-    />
-  ));
-
   return (
     <div className="bg-white py-8 px-6 rounded-3xl w-[600px]  mt-8 mx-2">
       <header className="flex items-center justify-between gap-40 ">
@@ -50,7 +25,7 @@ function App() {
           {!isFormShown && (
             <button
               className="bg-blue-400 border-0 rounded-full w-12 h-12 text-3xl text-white cursor-pointer transition-all duration-300 hover:bg-blue-700"
-              onClick={handleShowForm}
+              onClick={() => dispatch({ type: "open_form" })}
             >
               +
             </button>
@@ -59,10 +34,25 @@ function App() {
       </header>
 
       <div className="h-14 mt-8">
-        {isFormShown && <Form onTaskSubmit={handleTaskSubmit} />}
+        {isFormShown && (
+          <Form
+            onTaskSubmit={() => {
+              dispatch({ type: "add", newTask: task.id });
+            }}
+          />
+        )}
       </div>
 
-      <div>{tasksElements}</div>
+      <div>
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            task={task}
+            onToggleDone={() => dispatch({ type: "finish", id: task.id })}
+            onDelete={() => dispatch({ type: "delete", id: task.id })}
+          />
+        ))}
+      </div>
     </div>
   );
 }
