@@ -37,7 +37,7 @@ function App() {
         {isFormShown && (
           <Form
             onTaskSubmit={() => {
-              dispatch({ type: "add", newTask: task.id });
+              dispatch({ type: "add", newTask: tasks.id });
             }}
           />
         )}
