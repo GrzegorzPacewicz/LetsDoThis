@@ -36,8 +36,8 @@ function App() {
       <div className="h-14 mt-8">
         {isFormShown && (
           <Form
-            onTaskSubmit={() => {
-              dispatch({ type: "add", newTask: tasks.id });
+            onTaskSubmit={(task) => {
+              dispatch({ type: "add", newTask: task });
             }}
           />
         )}
